@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="283c27268b3e4db4a35ca1b245bd0c9e" Name="Diagram1">
+        <EntityTypeShape EntityType="watershedModel.User" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="watershedModel.watershed_city" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="watershedModel.watershed_city_data" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="watershedModel.watershed_crop" Width="1.5" PointX="9.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="watershedModel.watershed_policy" Width="1.5" PointX="12" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="watershedModel.watershed_state" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="watershedModel.watershed_taluka" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="watershedModel.watershed_taluka_data" Width="1.5" PointX="7.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="watershedModel.watershed_village" Width="1.5" PointX="7.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="watershedModel.watershed_village_data" Width="1.5" PointX="9.75" PointY="8.125" IsExpanded="true" />
+        <AssociationConnector Association="watershedModel.fk_city_data" ManuallyRouted="false" />
+        <AssociationConnector Association="watershedModel.fk_watershed_city" ManuallyRouted="false" />
+        <AssociationConnector Association="watershedModel.fk_watershed_taluka" ManuallyRouted="false" />
+        <AssociationConnector Association="watershedModel.fk_policy_crop_id" ManuallyRouted="false" />
+        <AssociationConnector Association="watershedModel.fk_policy_cd_id" ManuallyRouted="false" />
+        <AssociationConnector Association="watershedModel.fk_taluka_data" ManuallyRouted="false" />
+        <AssociationConnector Association="watershedModel.fk_watershed_village" ManuallyRouted="false" />
+        <AssociationConnector Association="watershedModel.fk_village_data" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
