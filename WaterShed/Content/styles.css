@@ -1,0 +1,143 @@
+#loginform,#loginforms
+{
+ width:500px;
+ height:360px;
+ margin-top:100px;
+ overflow: auto;
+ border-radius:3px;
+ box-shadow:0px 0px 10px 0px #424242;
+ padding:10px;
+ box-sizing:border-box;
+ font-family:helvetica;
+  background:black;
+    background:rgba(0,0,0,0.8);
+    color:white;
+ visibility:hidden;
+ display:none;
+  z-index:1;
+  position:absolute;
+  margin-left: 30%;
+  opaque=0.9;
+}
+#resultsearchs
+{
+ border-radius:3px;
+ box-shadow:0px 0px 10px 0px #424242;
+ padding:10px;
+ overflow: auto;
+ box-sizing:border-box;
+ font-family:helvetica;
+  background:black;
+    background:rgba(0,0,0,0.8);
+    color:white;
+ visibility:hidden;
+ display:none;
+  z-index:1;
+  position:absolute;
+  margin-left: 5%;
+  opaque=0.9;
+}
+
+#loginform #close_login
+{
+ position:absolute;
+ margin-top:-30%;
+ margin-left:19%;
+ width:25px;
+ height:20px;
+ z-index:1;
+
+}
+#loginform p
+{
+ margin-top:40px;
+ font-size:22px;
+ color:#E6E6E6;
+}
+#loginform #uid
+{
+	
+ width:250px;
+ height:40px;
+ border:2px solid silver;
+ border-radius:3px;
+ padding:5px;
+ color:black;
+}
+#loginform #uname,#mob,#role
+{
+ width:250px;
+ height:40px;
+ border:2px solid silver;
+ border-radius:3px;
+ padding:5px;
+ color:black;
+}
+#loginform #password
+{
+ margin-top:5px;
+ width:250px;
+ height:40px;
+ border:2px solid silver;
+ border-radius:3px;
+ padding:5px;
+color:black;
+}
+#loginform #dologin
+{
+ margin-left:-5px;
+ margin-top:10px;
+ width:250px;
+ height:40px;
+ border:none;
+ border-radius:3px;
+ color:#E6E6E6;
+ background-color:fuchsia;
+ font-size:20px;
+}
+
+
+ 	#demo ul{
+			list-style: none outside none;
+		    padding-left: 0;
+            margin: 0;
+		}
+        .demo .item{
+            margin-bottom: 60px;
+            
+        }
+		.content-slider li{
+		    
+		    text-align: center;
+		    color: red;
+	                   
+		}
+		.content-slider h3 {
+		    margin: 0;
+		    padding: 70px 0;
+		}
+		.demo{
+			width: 100%;
+			
+		}
+		.demo .item .contain #divs {
+          background-size:cover;
+          width: 30%;
+          }
+       * {
+    margin: 0;
+}
+
+
+
+.biskartbutton{
+	 
+ margin-top:10px;
+ width:80%;
+ height:40px;
+ border:none;
+ border-radius:3px;
+ color:#E6E6E6;
+ background-color:blue;
+ font-size:20px;
+}
