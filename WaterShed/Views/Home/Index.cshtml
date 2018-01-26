@@ -3,5 +3,79 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
+<div class="banner-info">
+    <div class="banner-info-left">
+        <h3>OUR MISSION IS TO MAKE YOUR <span> BUSINESS GROW</span></h3>
+        <p>It has been developed to provide guidance in enabling good decisions for <span>irrigators and consultants.</span></p>
+        <div class="start">
+            <a href="#">Learn More...</a>
+        </div>
+    </div>
+    <div class="banner-info-right">
+        <div class="banner-info-fig">
+            <a href="images/4.jpg" class="b-link-stripe b-animate-go   swipebox" title="">
+                <img class="img-responsive" src="~/images/4-.jpg" />
+            </a>
+        </div>
+        <div class="banner-info-fig">
+            <a href="images/5.jpg" class="b-link-stripe b-animate-go   swipebox" title="">
+                <img class="img-responsive" src="~/images/5-.jpg" />
+            </a>
+        </div>
+        <div class="clearfix"> </div>
+        <div class="banner-info-fig">
+            <a href="images/6.jpg" class="b-link-stripe b-animate-go   swipebox" title="">
+                <img class="img-responsive" src="~/images/6-.jpg" />
+            </a>
+        </div>
+        <div class="banner-info-fig">
+            <a href="images/7.jpg" class="b-link-stripe b-animate-go   swipebox" title="">
+                <img class="img-responsive" src="~/images/7-.jpg" />
+            </a>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+    <div class="clearfix"> </div>
+</div>
+<link rel="stylesheet" href="Content/swipebox.css">
+<script src="~/Scripts/jquery.swipebox.min.Scripts"></script>
+<script type="text/javascript">
+						jQuery(function($) {
+							$(".swipebox").swipebox();
+						});
+</script>
+<!-- Portfolio Ends Here -->
+<script type="text/javascript" src="~/Scripts/jquery.mixitup.min.js"></script>
+<script type="text/javascript">
+					$(function () {
+						var filterList = {
+							init: function () {
+								// MixItUp plugin
+							// http://mixitup.io
+							$('#portfoliolist').mixitup({
+								targetSelector: '.portfolio',
+								filterSelector: '.filter',
+								effects: ['fade'],
+								easing: 'snap',
+								// call the hover effect
+								onMixEnd: filterList.hoverEffect()
+							});
+						},
+						hoverEffect: function () {
+							// Simple parallax effect
+							$('#portfoliolist .portfolio').hover(
+								function () {
+									$(this).find('.label').stop().animate({bottom: 0}, 200, 'easeOutQuad');
+									$(this).find('img').stop().animate({top: -30}, 500, 'easeOutQuad');
+								},
+								function () {
+									$(this).find('.label').stop().animate({bottom: -40}, 200, 'easeInQuad');
+									$(this).find('img').stop().animate({top: 0}, 300, 'easeOutQuad');
+								}
+							);
+						}
+					};
+					// Run the show!
+						filterList.init();
+					});
+</script>
