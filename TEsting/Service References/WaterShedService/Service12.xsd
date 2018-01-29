@@ -29,4 +29,58 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="doGetCrop">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/BOM" minOccurs="0" name="crop" nillable="true" type="q4:watershed_crop" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="doGetCropResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/BOM" minOccurs="0" name="doGetCropResult" nillable="true" type="q5:watershed_crop" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="doGetCropList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="doGetCropListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/BOM" minOccurs="0" name="doGetCropListResult" nillable="true" type="q6:ArrayOfwatershed_crop" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="doRemoveCrop">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/BOM" minOccurs="0" name="crop" nillable="true" type="q7:watershed_crop" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="doRemoveCropResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="doRemoveCropResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="doAddCrop">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/BOM" minOccurs="0" name="crop" nillable="true" type="q8:watershed_crop" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="doAddCropResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="doAddCropResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

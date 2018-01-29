@@ -27,6 +27,9 @@ namespace BOM
         public double wateravail { get; set; }
         public double water_sarcacity { get; set; }
         public System.DateTime cycle_year { get; set; }
+        public int vd_id { get; set; }
+        public Nullable<int> livestock { get; set; }
+        public int num_families { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<watershed_policy> watershed_policy { get; set; }

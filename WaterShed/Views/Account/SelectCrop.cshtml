@@ -1,0 +1,179 @@
+﻿@model BOM.watershed_policy
+
+@{
+    ViewBag.Title = "SelectCrop";
+}
+<script src="~/Scripts/VillagesListAjax.js"></script>
+<script>
+    $(document).ready(function () {
+        CheckState();
+    });
+
+    function SelectVillageData() {
+       
+        villageid = document.getElementById("village").value;
+
+       var vd_id= document.getElementById("villagedata").value;
+        
+       $("#vd_id").val(vd_id);
+
+    }
+
+    function VDATA()
+    {
+        SelectVillageData();
+        var village_id = $("#village").val();
+        vid = document.getElementById("vd_id").value;
+        getVillageData(vid, village_id);
+        SuggestCrop();
+      
+    }
+
+    function SuggestCropArea()
+    {
+        var village_id = $("#village").val();
+        var vd_id = $("#vd_id").val();
+        var cultivated_area = $("#cultivated_area").val();
+        alert(cultivated_area);
+        var watershed_policy = { vd_id: vd_id,  cultivated_area: cultivated_area };
+        $.ajax({
+            type: 'post',
+            url: '/Admin/GetCropListArea',
+            data: JSON.stringify(watershed_policy),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (response) {
+                $("#crop_id").html(response.list);
+            },
+            error: function () {
+                alert("wrong details");
+            }
+        });
+    }
+
+    function SuggestCrop()
+    {
+        val = $("#village").val();
+        var vd_id = $("#vd_id").val();
+        var watershed_village_data = { village_id: val, vd_id: vd_id };
+        $.ajax({
+            type: 'post',
+            url: '/Admin/GetCropList',
+            data: JSON.stringify(watershed_village_data),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (response) {
+                $("#crop_id").html(response.list);
+
+            },
+            error: function () {
+                alert("wrong details");
+            }
+        });
+    }
+
+    function ListVillageData() {
+        var val = $("#village").val();
+       // alert('here');
+        var watershed_village_data = { village_id: val };
+        $.ajax({
+            type: 'post',
+            url: '/Admin/GetVillageDataList',
+            data: JSON.stringify(watershed_village_data),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (response) {
+                //SuggestCrop(val);
+                $("#villagedata").html(response.list);
+
+            },
+            error: function () {
+                alert("wrong details");
+            }
+        });
+    }
+
+ 
+
+</script>
+<h2>SelectCrop</h2>
+<div class="watersheddiv container body-content">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>watershed_policy</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2" for="state">Select State:</label>
+                <div class="col-md-10">
+                    <select id="state" class="form-control" onchange="ListCity()"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="city">Select City:</label>
+                <div class="col-md-10">
+                    <select id="city" class="form-control" onchange="ListTaluka()"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="taluka">Select Taluka:</label>
+                <div class="col-md-10">
+                    <select id="taluka" class="form-control" onchange="ListVillages()"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="village">Select Village:</label>
+                <div class="col-md-10">
+                    <select id="village" required class="form-control" onchange="ListVillageData()"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="village">Select Year:</label>
+                <div class="col-md-10">
+                    <select id="villagedata" required class="form-control" onchange="VDATA()"></select>
+                </div>
+            </div>
+            <input type="hidden" name="vd_id" id="vd_id" />
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.crop_id, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                   <select name="crop_id" id="crop_id" class="form-control"></select>
+                    @Html.ValidationMessageFor(model => model.crop_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.cultivated_area, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                   <input type="text" name="cultivated_area" id="cultivated_area" onkeypress="SuggestCropArea()" />
+                    @Html.ValidationMessageFor(model => model.cultivated_area, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.year, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.year, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.year, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @{      
+                    BOM.User user = (BOM.User)this.Session["user"];
+            }
+            <input type="hidden" name="uid" id="uid" value="@user.uid" />
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Add Crop" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <span id="myspan"></span>
+</div>
+

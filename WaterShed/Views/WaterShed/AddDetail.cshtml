@@ -1,0 +1,42 @@
+﻿@model BOM.watershed_state
+
+@{
+    ViewBag.Title = "AddDetail";
+}
+
+
+<h2>Add Crop Detail</h2>
+
+@{
+    BOM.User user = Session["user"] as BOM.User;
+    bool status = (user.role.Equals("admin") );
+ }
+<div class="watersheddiv container body-content">
+    @if (status)
+    {
+        <div class="row">
+            <div class="col-lg-8">
+                <form method="post" action="/WaterShed/AddCrop" class="form-group">
+
+                    <div class="form-horizontal">
+                        <table>
+                            <tr><td>Crop Name</td><td><input type="text" name="cname" id="cname" class="form-control" /></td><td></td></tr>
+                            <tr><td>Crop type</td><td><input type="text" name="type" id="type" class="form-control" /></td><td></td></tr>
+                            <tr><td>Crop season</td><td><input type="text" name="season" id="season" class="form-control" /></td><td></td></tr>
+                            <tr><td>Water Requirement</td><td><input type="text" name="waterreq" id="waterreq" class="form-control" /><td>mm</td></td></tr>
+                            <tr><td></td><td><input type="submit" value="Add Crop" class="btn" /></td></tr>
+                        </table>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <ul>
+                    <li>@Html.ActionLink("Add State", "AddState", "WaterShed")</li>
+                    <li>@Html.ActionLink("Add Division", "AddCity", "WaterShed")</li>
+                    <li>@Html.ActionLink("Add Taluka", "AddTaluka", "WaterShed")</li>
+                    <li>@Html.ActionLink("Add Village", "AddVillage", "WaterShed")</li>
+                </ul>
+            </div>
+        </div>
+    }
+    </div>

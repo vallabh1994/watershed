@@ -1,0 +1,69 @@
+﻿@model IEnumerable<BOM.watershed_village_data>
+
+@{
+    ViewBag.Title = "PolicyView";
+}
+
+<h2>PolicyView</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.village_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.population)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.waterreq)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rainfall)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.wateravail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.water_sarcacity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cycle_year)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.village_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.population)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.waterreq)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rainfall)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.wateravail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.water_sarcacity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cycle_year)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

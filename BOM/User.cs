@@ -15,6 +15,12 @@ namespace BOM
     using System.ComponentModel;
     public partial class User
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public User()
+        {
+            this.watershed_policy = new HashSet<watershed_policy>();
+        }
+
         public int uid { get; set; }
         [Required]
         public string Name { get; set; }
@@ -30,7 +36,8 @@ namespace BOM
         public string pincode { get; set; }
         [Required]
         public string role { get; set; }
-     
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<watershed_policy> watershed_policy { get; set; }
     }
 }

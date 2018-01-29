@@ -1,0 +1,172 @@
+﻿@model BOM.watershed_village_data
+
+@{
+    ViewBag.Title = "VillageDetails";
+}
+@{ 
+    List<BOM.watershed_policy> policy = ViewData["policy"] as List<BOM.watershed_policy>;
+
+}
+<style>
+    dd, dt {
+        font-size: medium;
+    }
+</style>
+<h2>VillageDetails</h2>
+<div class="watersheddiv container body-content">
+<div>
+    <h4>Water Budget for @Model.watershed_village.Name</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.watershed_village.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.watershed_village.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.population) 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.population) per person
+        </dd>
+
+        <dt>
+           Required water:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.waterreq)  Litres.
+        </dd>
+
+  
+
+        <dt>
+           Available water:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.wateravail) Litre.
+        </dd>
+
+           @if (Model.waterreq > Model.wateravail)
+           {
+
+            <dt>
+                Water Sarcacity
+            </dt>
+            <dd>
+                @{String str = Convert.ToString( Model.waterreq- Model.wateravail); }
+                @str Litre.
+            </dd>
+                    }
+
+        @if (null != policy)
+        {
+            if (policy.Count>0)
+            {
+                foreach (BOM.watershed_policy pol in policy)
+                {
+                    if(null!=pol.watershed_crop)
+                    { 
+                <dt>
+                    Crop Cultivated:
+                </dt>
+                <dd>
+                    @pol.watershed_crop.cname
+                </dd>
+                <dt>
+                    Crop Season:
+                </dt>
+                <dd>
+                    @pol.watershed_crop.season
+                </dd>
+                <dt>
+                    Area Under cultivation:
+                </dt>
+                <dd>
+                    @pol.cultivated_area
+                </dd>
+                    }
+                }
+            }
+        }
+
+        <dt>
+            Year:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cycle_year)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.livestock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.livestock) Animals.
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.num_families)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.num_families)
+        </dd>
+        @{ 
+          WaterShed.Models.WaterBugest budget=  WaterShed.Models.WaterModel.GetWaterBudget(Model);
+        }
+        <h3>Water Used For </h3>
+        <dt>
+            Toilet:
+        </dt>
+
+        <dd>
+            @budget.Toilet
+        </dd>
+
+        <dt>
+            Bath:
+        </dt>
+
+        <dd>
+            @budget.Bath
+        </dd>
+        <dt>
+            Washing Cloth:
+        </dt>
+
+        <dd>
+            @budget.clothwashing
+        </dd>
+
+        <dt>
+           DishWashing:
+        </dt>
+
+        <dd>
+            @budget.dishwashing
+        </dd>
+
+        <dt>
+            LiveStock:
+        </dt>
+
+        <dd>
+            @budget.livestock
+        </dd>
+
+     
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "ViewDetail")
+</p>
+    </div>

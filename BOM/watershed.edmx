@@ -54,9 +54,11 @@
             <PropertyRef Name="pid" />
           </Key>
           <Property Name="pid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="cd_id" Type="int" Nullable="false" />
+          <Property Name="vd_id" Type="int" Nullable="false" />
           <Property Name="crop_id" Type="int" Nullable="false" />
           <Property Name="cultivated_area" Type="double" Nullable="false" />
+          <Property Name="year" Type="varchar" MaxLength="45" />
+          <Property Name="uid" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="watershed_state">
           <Key>
@@ -76,15 +78,16 @@
         </EntityType>
         <EntityType Name="watershed_taluka_data">
           <Key>
-            <PropertyRef Name="tal_id" />
+            <PropertyRef Name="td_id" />
           </Key>
-          <Property Name="tal_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tal_id" Type="int" Nullable="false" />
           <Property Name="population" Type="int" Nullable="false" />
           <Property Name="waterreq" Type="double" Nullable="false" />
           <Property Name="rainfall" Type="double" Nullable="false" />
           <Property Name="wateravail" Type="double" Nullable="false" />
           <Property Name="water_sarcacity" Type="double" Nullable="false" />
           <Property Name="cycle_year" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="td_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="watershed_village">
           <Key>
@@ -98,15 +101,18 @@
         </EntityType>
         <EntityType Name="watershed_village_data">
           <Key>
-            <PropertyRef Name="village_id" />
+            <PropertyRef Name="vd_id" />
           </Key>
-          <Property Name="village_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="village_id" Type="int" Nullable="false" />
           <Property Name="population" Type="int" Nullable="false" />
           <Property Name="waterreq" Type="double" Nullable="false" />
           <Property Name="rainfall" Type="double" Nullable="false" />
           <Property Name="wateravail" Type="double" Nullable="false" />
           <Property Name="water_sarcacity" Type="double" Nullable="false" />
           <Property Name="cycle_year" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="vd_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="livestock" Type="int" />
+          <Property Name="num_families" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="fk_city_data">
           <End Role="watershed_city" Type="Self.watershed_city" Multiplicity="1" />
@@ -117,18 +123,6 @@
             </Principal>
             <Dependent Role="watershed_city_data">
               <PropertyRef Name="cid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_policy_cd_id">
-          <End Role="watershed_village_data" Type="Self.watershed_village_data" Multiplicity="1" />
-          <End Role="watershed_policy" Type="Self.watershed_policy" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="watershed_village_data">
-              <PropertyRef Name="village_id" />
-            </Principal>
-            <Dependent Role="watershed_policy">
-              <PropertyRef Name="cd_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -146,7 +140,7 @@
         </Association>
         <Association Name="fk_taluka_data">
           <End Role="watershed_taluka" Type="Self.watershed_taluka" Multiplicity="1" />
-          <End Role="watershed_taluka_data" Type="Self.watershed_taluka_data" Multiplicity="0..1" />
+          <End Role="watershed_taluka_data" Type="Self.watershed_taluka_data" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="watershed_taluka">
               <PropertyRef Name="tid" />
@@ -156,15 +150,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_village_data">
-          <End Role="watershed_village" Type="Self.watershed_village" Multiplicity="1" />
-          <End Role="watershed_village_data" Type="Self.watershed_village_data" Multiplicity="0..1" />
+        <Association Name="fk_village_data_id">
+          <End Role="watershed_village_data" Type="Self.watershed_village_data" Multiplicity="1" />
+          <End Role="watershed_policy" Type="Self.watershed_policy" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="watershed_village">
-              <PropertyRef Name="vid" />
+            <Principal Role="watershed_village_data">
+              <PropertyRef Name="vd_id" />
             </Principal>
-            <Dependent Role="watershed_village_data">
-              <PropertyRef Name="village_id" />
+            <Dependent Role="watershed_policy">
+              <PropertyRef Name="vd_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_village_user_id">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="watershed_policy" Type="Self.watershed_policy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="uid" />
+            </Principal>
+            <Dependent Role="watershed_policy">
+              <PropertyRef Name="uid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -204,6 +210,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="watershed_villagedata_vid">
+          <End Role="watershed_village" Type="Self.watershed_village" Multiplicity="1" />
+          <End Role="watershed_village_data" Type="Self.watershed_village_data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="watershed_village">
+              <PropertyRef Name="vid" />
+            </Principal>
+            <Dependent Role="watershed_village_data">
+              <PropertyRef Name="village_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="watershedModelStoreContainer">
           <EntitySet Name="user" EntityType="Self.user" Schema="watershed" store:Type="Tables" />
           <EntitySet Name="watershed_city" EntityType="Self.watershed_city" Schema="watershed" store:Type="Tables" />
@@ -219,10 +237,6 @@
             <End Role="watershed_city" EntitySet="watershed_city" />
             <End Role="watershed_city_data" EntitySet="watershed_city_data" />
           </AssociationSet>
-          <AssociationSet Name="fk_policy_cd_id" Association="Self.fk_policy_cd_id">
-            <End Role="watershed_village_data" EntitySet="watershed_village_data" />
-            <End Role="watershed_policy" EntitySet="watershed_policy" />
-          </AssociationSet>
           <AssociationSet Name="fk_policy_crop_id" Association="Self.fk_policy_crop_id">
             <End Role="watershed_crop" EntitySet="watershed_crop" />
             <End Role="watershed_policy" EntitySet="watershed_policy" />
@@ -231,9 +245,13 @@
             <End Role="watershed_taluka" EntitySet="watershed_taluka" />
             <End Role="watershed_taluka_data" EntitySet="watershed_taluka_data" />
           </AssociationSet>
-          <AssociationSet Name="fk_village_data" Association="Self.fk_village_data">
-            <End Role="watershed_village" EntitySet="watershed_village" />
+          <AssociationSet Name="fk_village_data_id" Association="Self.fk_village_data_id">
             <End Role="watershed_village_data" EntitySet="watershed_village_data" />
+            <End Role="watershed_policy" EntitySet="watershed_policy" />
+          </AssociationSet>
+          <AssociationSet Name="fk_village_user_id" Association="Self.fk_village_user_id">
+            <End Role="user" EntitySet="user" />
+            <End Role="watershed_policy" EntitySet="watershed_policy" />
           </AssociationSet>
           <AssociationSet Name="fk_watershed_city" Association="Self.fk_watershed_city">
             <End Role="watershed_state" EntitySet="watershed_state" />
@@ -246,6 +264,10 @@
           <AssociationSet Name="fk_watershed_village" Association="Self.fk_watershed_village">
             <End Role="watershed_taluka" EntitySet="watershed_taluka" />
             <End Role="watershed_village" EntitySet="watershed_village" />
+          </AssociationSet>
+          <AssociationSet Name="watershed_villagedata_vid" Association="Self.watershed_villagedata_vid">
+            <End Role="watershed_village" EntitySet="watershed_village" />
+            <End Role="watershed_village_data" EntitySet="watershed_village_data" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -263,6 +285,7 @@
           <Property Name="role" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ConfirmPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="watershed_policy" Relationship="Self.fk_village_user_id" FromRole="user" ToRole="watershed_policy" />
         </EntityType>
         <EntityType Name="watershed_city">
           <Key>
@@ -306,11 +329,14 @@
             <PropertyRef Name="pid" />
           </Key>
           <Property Name="pid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cd_id" Type="Int32" Nullable="false" />
+          <Property Name="vd_id" Type="Int32" Nullable="false" />
           <Property Name="crop_id" Type="Int32" Nullable="false" />
           <Property Name="cultivated_area" Type="Double" Nullable="false" />
+          <Property Name="year" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="uid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Self.fk_village_user_id" FromRole="watershed_policy" ToRole="user" />
           <NavigationProperty Name="watershed_crop" Relationship="Self.fk_policy_crop_id" FromRole="watershed_policy" ToRole="watershed_crop" />
-          <NavigationProperty Name="watershed_village_data" Relationship="Self.fk_policy_cd_id" FromRole="watershed_policy" ToRole="watershed_village_data" />
+          <NavigationProperty Name="watershed_village_data" Relationship="Self.fk_village_data_id" FromRole="watershed_policy" ToRole="watershed_village_data" />
         </EntityType>
         <EntityType Name="watershed_state">
           <Key>
@@ -334,15 +360,16 @@
         </EntityType>
         <EntityType Name="watershed_taluka_data">
           <Key>
-            <PropertyRef Name="tal_id" />
+            <PropertyRef Name="td_id" />
           </Key>
-          <Property Name="tal_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tal_id" Type="Int32" Nullable="false" />
           <Property Name="population" Type="Int32" Nullable="false" />
           <Property Name="waterreq" Type="Double" Nullable="false" />
           <Property Name="rainfall" Type="Double" Nullable="false" />
           <Property Name="wateravail" Type="Double" Nullable="false" />
           <Property Name="water_sarcacity" Type="Double" Nullable="false" />
           <Property Name="cycle_year" Type="DateTime" Nullable="false" />
+          <Property Name="td_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="watershed_taluka" Relationship="Self.fk_taluka_data" FromRole="watershed_taluka_data" ToRole="watershed_taluka" />
         </EntityType>
         <EntityType Name="watershed_village">
@@ -355,22 +382,37 @@
           <Property Name="Pincode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="watershed_taluka" Relationship="Self.fk_watershed_village" FromRole="watershed_village" ToRole="watershed_taluka" />
-          <NavigationProperty Name="watershed_village_data" Relationship="Self.fk_village_data" FromRole="watershed_village" ToRole="watershed_village_data" />
+          <NavigationProperty Name="watershed_village_data" Relationship="Self.watershed_villagedata_vid" FromRole="watershed_village" ToRole="watershed_village_data" />
         </EntityType>
         <EntityType Name="watershed_village_data">
           <Key>
-            <PropertyRef Name="village_id" />
+            <PropertyRef Name="vd_id" />
           </Key>
-          <Property Name="village_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="village_id" Type="Int32" Nullable="false" />
           <Property Name="population" Type="Int32" Nullable="false" />
           <Property Name="waterreq" Type="Double" Nullable="false" />
           <Property Name="rainfall" Type="Double" Nullable="false" />
           <Property Name="wateravail" Type="Double" Nullable="false" />
           <Property Name="water_sarcacity" Type="Double" Nullable="false" />
           <Property Name="cycle_year" Type="DateTime" Nullable="false" />
-          <NavigationProperty Name="watershed_policy" Relationship="Self.fk_policy_cd_id" FromRole="watershed_village_data" ToRole="watershed_policy" />
-          <NavigationProperty Name="watershed_village" Relationship="Self.fk_village_data" FromRole="watershed_village_data" ToRole="watershed_village" />
+          <Property Name="vd_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="watershed_policy" Relationship="Self.fk_village_data_id" FromRole="watershed_village_data" ToRole="watershed_policy" />
+          <NavigationProperty Name="watershed_village" Relationship="Self.watershed_villagedata_vid" FromRole="watershed_village_data" ToRole="watershed_village" />
+          <Property Name="livestock" Type="Int32" />
+          <Property Name="num_families" Type="Int32" Nullable="false" />
         </EntityType>
+        <Association Name="fk_village_user_id">
+          <End Role="user" Type="watershedModel.User" Multiplicity="1" />
+          <End Role="watershed_policy" Type="Self.watershed_policy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="uid" />
+            </Principal>
+            <Dependent Role="watershed_policy">
+              <PropertyRef Name="uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_city_data">
           <End Role="watershed_city" Type="Self.watershed_city" Multiplicity="1" />
           <End Role="watershed_city_data" Type="Self.watershed_city_data" Multiplicity="*" />
@@ -419,21 +461,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_policy_cd_id">
+        <Association Name="fk_village_data_id">
           <End Role="watershed_village_data" Type="Self.watershed_village_data" Multiplicity="1" />
           <End Role="watershed_policy" Type="Self.watershed_policy" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="watershed_village_data">
-              <PropertyRef Name="village_id" />
+              <PropertyRef Name="vd_id" />
             </Principal>
             <Dependent Role="watershed_policy">
-              <PropertyRef Name="cd_id" />
+              <PropertyRef Name="vd_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_taluka_data">
           <End Role="watershed_taluka" Type="Self.watershed_taluka" Multiplicity="1" />
-          <End Role="watershed_taluka_data" Type="Self.watershed_taluka_data" Multiplicity="0..1" />
+          <End Role="watershed_taluka_data" Type="Self.watershed_taluka_data" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="watershed_taluka">
               <PropertyRef Name="tid" />
@@ -455,9 +497,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_village_data">
+        <Association Name="watershed_villagedata_vid">
           <End Role="watershed_village" Type="Self.watershed_village" Multiplicity="1" />
-          <End Role="watershed_village_data" Type="Self.watershed_village_data" Multiplicity="0..1" />
+          <End Role="watershed_village_data" Type="Self.watershed_village_data" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="watershed_village">
               <PropertyRef Name="vid" />
@@ -478,6 +520,10 @@
           <EntitySet Name="watershed_taluka_data" EntityType="Self.watershed_taluka_data" />
           <EntitySet Name="watershed_village" EntityType="Self.watershed_village" />
           <EntitySet Name="watershed_village_data" EntityType="Self.watershed_village_data" />
+          <AssociationSet Name="fk_village_user_id" Association="Self.fk_village_user_id">
+            <End Role="user" EntitySet="Users1" />
+            <End Role="watershed_policy" EntitySet="watershed_policy" />
+          </AssociationSet>
           <AssociationSet Name="fk_city_data" Association="Self.fk_city_data">
             <End Role="watershed_city" EntitySet="watershed_city" />
             <End Role="watershed_city_data" EntitySet="watershed_city_data" />
@@ -494,7 +540,7 @@
             <End Role="watershed_crop" EntitySet="watershed_crop" />
             <End Role="watershed_policy" EntitySet="watershed_policy" />
           </AssociationSet>
-          <AssociationSet Name="fk_policy_cd_id" Association="Self.fk_policy_cd_id">
+          <AssociationSet Name="fk_village_data_id" Association="Self.fk_village_data_id">
             <End Role="watershed_village_data" EntitySet="watershed_village_data" />
             <End Role="watershed_policy" EntitySet="watershed_policy" />
           </AssociationSet>
@@ -506,7 +552,7 @@
             <End Role="watershed_taluka" EntitySet="watershed_taluka" />
             <End Role="watershed_village" EntitySet="watershed_village" />
           </AssociationSet>
-          <AssociationSet Name="fk_village_data" Association="Self.fk_village_data">
+          <AssociationSet Name="watershed_villagedata_vid" Association="Self.watershed_villagedata_vid">
             <End Role="watershed_village" EntitySet="watershed_village" />
             <End Role="watershed_village_data" EntitySet="watershed_village_data" />
           </AssociationSet>
@@ -569,9 +615,11 @@
             <EntityTypeMapping TypeName="watershedModel.watershed_policy">
               <MappingFragment StoreEntitySet="watershed_policy">
                 <ScalarProperty Name="pid" ColumnName="pid" />
-                <ScalarProperty Name="cd_id" ColumnName="cd_id" />
+                <ScalarProperty Name="vd_id" ColumnName="vd_id" />
                 <ScalarProperty Name="crop_id" ColumnName="crop_id" />
                 <ScalarProperty Name="cultivated_area" ColumnName="cultivated_area" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="uid" ColumnName="uid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -603,6 +651,7 @@
                 <ScalarProperty Name="wateravail" ColumnName="wateravail" />
                 <ScalarProperty Name="water_sarcacity" ColumnName="water_sarcacity" />
                 <ScalarProperty Name="cycle_year" ColumnName="cycle_year" />
+                <ScalarProperty Name="td_id" ColumnName="td_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -620,6 +669,8 @@
           <EntitySetMapping Name="watershed_village_data">
             <EntityTypeMapping TypeName="watershedModel.watershed_village_data">
               <MappingFragment StoreEntitySet="watershed_village_data">
+                <ScalarProperty Name="num_families" ColumnName="num_families" />
+                <ScalarProperty Name="livestock" ColumnName="livestock" />
                 <ScalarProperty Name="village_id" ColumnName="village_id" />
                 <ScalarProperty Name="population" ColumnName="population" />
                 <ScalarProperty Name="waterreq" ColumnName="waterreq" />
@@ -627,6 +678,7 @@
                 <ScalarProperty Name="wateravail" ColumnName="wateravail" />
                 <ScalarProperty Name="water_sarcacity" ColumnName="water_sarcacity" />
                 <ScalarProperty Name="cycle_year" ColumnName="cycle_year" />
+                <ScalarProperty Name="vd_id" ColumnName="vd_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

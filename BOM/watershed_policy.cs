@@ -15,10 +15,13 @@ namespace BOM
     public partial class watershed_policy
     {
         public int pid { get; set; }
-        public int cd_id { get; set; }
+        public int vd_id { get; set; }
         public int crop_id { get; set; }
         public double cultivated_area { get; set; }
+        public string year { get; set; }
+        public int uid { get; set; }
     
+        public virtual User user { get; set; }
         public virtual watershed_crop watershed_crop { get; set; }
         public virtual watershed_village_data watershed_village_data { get; set; }
     }

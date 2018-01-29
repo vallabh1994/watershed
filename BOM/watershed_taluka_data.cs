@@ -21,6 +21,7 @@ namespace BOM
         public double wateravail { get; set; }
         public double water_sarcacity { get; set; }
         public System.DateTime cycle_year { get; set; }
+        public int td_id { get; set; }
     
         public virtual watershed_taluka watershed_taluka { get; set; }
     }

@@ -26,6 +26,30 @@ namespace TEsting.WaterShedService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/doRegister", ReplyAction="http://tempuri.org/IService1/doRegisterResponse")]
         System.Threading.Tasks.Task<bool> doRegisterAsync(BOM.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/doGetCrop", ReplyAction="http://tempuri.org/IService1/doGetCropResponse")]
+        BOM.watershed_crop doGetCrop(BOM.watershed_crop crop);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/doGetCrop", ReplyAction="http://tempuri.org/IService1/doGetCropResponse")]
+        System.Threading.Tasks.Task<BOM.watershed_crop> doGetCropAsync(BOM.watershed_crop crop);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/doGetCropList", ReplyAction="http://tempuri.org/IService1/doGetCropListResponse")]
+        BOM.watershed_crop[] doGetCropList();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/doGetCropList", ReplyAction="http://tempuri.org/IService1/doGetCropListResponse")]
+        System.Threading.Tasks.Task<BOM.watershed_crop[]> doGetCropListAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/doRemoveCrop", ReplyAction="http://tempuri.org/IService1/doRemoveCropResponse")]
+        bool doRemoveCrop(BOM.watershed_crop crop);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/doRemoveCrop", ReplyAction="http://tempuri.org/IService1/doRemoveCropResponse")]
+        System.Threading.Tasks.Task<bool> doRemoveCropAsync(BOM.watershed_crop crop);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/doAddCrop", ReplyAction="http://tempuri.org/IService1/doAddCropResponse")]
+        bool doAddCrop(BOM.watershed_crop crop);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/doAddCrop", ReplyAction="http://tempuri.org/IService1/doAddCropResponse")]
+        System.Threading.Tasks.Task<bool> doAddCropAsync(BOM.watershed_crop crop);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -69,6 +93,38 @@ namespace TEsting.WaterShedService {
         
         public System.Threading.Tasks.Task<bool> doRegisterAsync(BOM.User user) {
             return base.Channel.doRegisterAsync(user);
+        }
+        
+        public BOM.watershed_crop doGetCrop(BOM.watershed_crop crop) {
+            return base.Channel.doGetCrop(crop);
+        }
+        
+        public System.Threading.Tasks.Task<BOM.watershed_crop> doGetCropAsync(BOM.watershed_crop crop) {
+            return base.Channel.doGetCropAsync(crop);
+        }
+        
+        public BOM.watershed_crop[] doGetCropList() {
+            return base.Channel.doGetCropList();
+        }
+        
+        public System.Threading.Tasks.Task<BOM.watershed_crop[]> doGetCropListAsync() {
+            return base.Channel.doGetCropListAsync();
+        }
+        
+        public bool doRemoveCrop(BOM.watershed_crop crop) {
+            return base.Channel.doRemoveCrop(crop);
+        }
+        
+        public System.Threading.Tasks.Task<bool> doRemoveCropAsync(BOM.watershed_crop crop) {
+            return base.Channel.doRemoveCropAsync(crop);
+        }
+        
+        public bool doAddCrop(BOM.watershed_crop crop) {
+            return base.Channel.doAddCrop(crop);
+        }
+        
+        public System.Threading.Tasks.Task<bool> doAddCropAsync(BOM.watershed_crop crop) {
+            return base.Channel.doAddCropAsync(crop);
         }
     }
 }

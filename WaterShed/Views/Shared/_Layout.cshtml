@@ -17,12 +17,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
-    <link type="text/css" href="~/Content/styles.css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/Content/component.css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/Content/normalize.css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/Content/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/Content/swipebox.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/styles.css"  rel="stylesheet" type="text/css" media="all" />
 
     <!-- js -->
 
@@ -72,22 +72,31 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <span class="menu"><img src="~/images/menu.png" alt=" " /></span>
                     <nav class="cl-effect-3">
                         <ul class="nav1">
-                            <li class="active"><a href="/Home/Index" class="scroll">Home</a></li>
+                            <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
                             @{ BOM.User user = this.Session["user"] as BOM.User;
                                 if (user.uid == 0)
                                 {
                                     <li>@Html.ActionLink("Login", "Login", "Account")</li>
-                                    <li><button class='btn' and style='display:inline-block;color:white;text-align:center; background-color:transparent' id='login'><span class='glyphicon glyphicon-log-in'></span> Login</button></li>
+                                  
                                     <li>@Html.ActionLink("Register", "Register", "Account")</li>
                                 }
                                 else
                                 {
                                     if (user.role.Equals("admin") || user.role.Equals("agent"))
                                     {
-                                        <li>@Html.ActionLink("Add Detail", "AddDetail", "WaterShed")</li>
+                                        <li>
+                                            @Html.ActionLink("Crop Detail", "AddDetail", "WaterShed")
+                                        <ul class="dropdown-menu">
+                                            <li>@Html.ActionLink("Add State", "AddState", "WaterShed")</li>
+                                            <li>@Html.ActionLink("Add Division", "AddCity", "WaterShed")</li>
+                                            <li>@Html.ActionLink("Add Taluka", "AddTaluka", "WaterShed")</li>
+                                            <li>@Html.ActionLink("Add Village", "AddVillage", "WaterShed")</li>
+                                        </ul>
+                                    </li>
                                     }
+                                    <li>@Html.ActionLink("Add Details", "AddVillageDetail", "WaterShed")</li>
                                     <li>@Html.ActionLink("Water Budget", "ViewDetail", "WaterShed")</li>
-                                    <li>@Html.ActionLink("Water Policy", "ViewPolicy", "WaterShed")</li>
+                         
                                     <li class="dropdown">
                                         <a class="dropdown-toggle" data-toggle="dropdown" href="">Hello @user.Name</a>
                                         <ul class="dropdown-menu">

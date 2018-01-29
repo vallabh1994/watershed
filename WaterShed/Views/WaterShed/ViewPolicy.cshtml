@@ -1,0 +1,80 @@
+﻿@model BOM.watershed_village_data
+
+@{
+    ViewBag.Title = "ViewPolicy";
+}
+
+<h2>ViewPolicy</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>watershed_village_data</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.village_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.village_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.population)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.population)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.waterreq)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.waterreq)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rainfall)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rainfall)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.wateravail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.wateravail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.water_sarcacity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.water_sarcacity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cycle_year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cycle_year)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

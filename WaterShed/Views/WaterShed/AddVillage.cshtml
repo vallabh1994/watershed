@@ -1,0 +1,96 @@
+﻿@model BOM.watershed_village
+
+@{
+    ViewBag.Title = "AddVillage";
+}
+<script src="~/Scripts/VillagesListAjax.js"></script>
+<script>
+    $(document).ready(function () {
+        CheckState();
+    });
+
+    function SelectVillage() {
+        var vid = $("#taluka").val();
+        $("#tid").val(vid);
+    }
+</script>
+<h2>AddVillage</h2>
+<div class="watersheddiv container body-content">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>watershed_village</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+            <div class="form-group">
+                <label class="control-label col-md-2" for="state">Select State:</label>
+                <div class="col-md-10">
+                    <select id="state" class="form-control" onchange="ListCity()"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="city">Select City:</label>
+                <div class="col-md-10">
+                    <select id="city" class="form-control" onchange="ListTaluka()"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="taluka">Select Taluka:</label>
+                <div class="col-md-10">
+                    <select id="taluka" class="form-control" onchange="SelectVillage()"></select>
+                </div>
+            </div>
+            <input type="hidden" name="tid" id="tid" required />
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Area, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Area, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Area, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Pincode, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Pincode, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Pincode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Add Village" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <span id="msgspan" style="color:red"></span>
+</div>
+@{
+    String script = ViewData["AddVillage"] as String;
+    if (null != script)
+    {
+        if (script.Equals("success"))
+        {
+            <script>alert('Village added successfully'); $('#msgspan').html('Village added successfully'); </script>
+        }
+        else if (script.Equals("fail"))
+        {
+            <script>alert('failed to add Village'); $('#msgspan').html('Failed to add Village'); </script>
+        }
+    }
+}

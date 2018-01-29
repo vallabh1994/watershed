@@ -18,8 +18,25 @@ namespace WaterShedService
 
         [OperationContract]
         Boolean doRegister(BOM.User user);
+
+
+        [OperationContract]
+        BOM.watershed_crop doGetCrop(BOM.watershed_crop crop);
+
+        [OperationContract]
+        List<BOM.watershed_crop> doGetCropList();
+
+        [OperationContract]
+        bool doRemoveCrop(BOM.watershed_crop crop);
+
+        [OperationContract]
+        bool doAddCrop(BOM.watershed_crop crop);
+
+      
+        [OperationContract]
+        List<BOM.watershed_state> GetAllStates();
     }
 
 
-  
+
 }

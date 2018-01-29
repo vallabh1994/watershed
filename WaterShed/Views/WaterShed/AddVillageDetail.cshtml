@@ -1,0 +1,136 @@
+﻿@model BOM.watershed_village_data
+
+@{
+    ViewBag.Title = "AddVillageDetail";
+}
+<script src="~/Scripts/VillagesListAjax.js"></script>
+<script>
+    $(document).ready(function () {
+        CheckState();
+    });
+
+    function SelectVillage() {
+        var vid = $("#village").val();
+        $("#village_id").val(vid);
+    }
+</script>
+<h2>Village Details</h2>
+
+<div class="watersheddiv container body-content">
+    @using (Html.BeginForm("AddVillageDetail", "WaterShed", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>watershed_village_data</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+            <div class="form-group">
+                <label class="control-label col-md-2" for="state">Select State:</label>
+                <div class="col-md-10">
+                    <select id="state" class="form-control" onchange="ListCity()"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="city">Select City:</label>
+                <div class="col-md-10">
+                    <select id="city" class="form-control" onchange="ListTaluka()"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="taluka">Select Taluka:</label>
+                <div class="col-md-10">
+                    <select id="taluka" class="form-control" onchange="ListVillages()"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="village">Select Village:</label>
+                <div class="col-md-10">
+                    <select id="village" required class="form-control" onchange="SelectVillage()"></select>
+                </div>
+            </div>
+            <input type="hidden" required name="village_id" id="village_id" />
+
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.population, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.population, new { htmlAttributes = new { @class = "form-control" } }) /Per Person
+                    @Html.ValidationMessageFor(model => model.population, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.rainfall, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.rainfall, new { htmlAttributes = new { @class = "form-control" } })in mm
+                    @Html.ValidationMessageFor(model => model.rainfall, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="wateravail">Catchment Area</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" name="wateravail" id="wateravail" placeholder="meter square" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="water_sarcacity">Evaporation Rate</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" name="water_sarcacity" id="water_sarcacity" placeholder="in mm" /> in mm
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.cycle_year, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="date" name="cycle_year" required id="cycle_year" />
+                    @Html.ValidationMessageFor(model => model.cycle_year, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.livestock, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.livestock, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.livestock, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.num_families, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.num_families, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.num_families, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Add Detail" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <span id="msgspan" style="color:red"></span>
+</div>
+@{
+    String script = ViewData["AddVillageData"] as String;
+    if (null != script)
+    {
+        if (script.Equals("success"))
+        {
+            <script>alert('Village data added successfully'); $('#msgspan').html('Village added successfully'); </script>
+        }
+        else if (script.Equals("fail"))
+        {
+            <script>alert('failed to add Village data'); $('#msgspan').html('Failed to add Village'); </script>
+        }
+    }
+}

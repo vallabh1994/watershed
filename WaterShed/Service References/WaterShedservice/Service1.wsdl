@@ -19,6 +19,36 @@
   <wsdl:message name="IService1_doRegister_OutputMessage">
     <wsdl:part name="parameters" element="tns:doRegisterResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_doGetCrop_InputMessage">
+    <wsdl:part name="parameters" element="tns:doGetCrop" />
+  </wsdl:message>
+  <wsdl:message name="IService1_doGetCrop_OutputMessage">
+    <wsdl:part name="parameters" element="tns:doGetCropResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_doGetCropList_InputMessage">
+    <wsdl:part name="parameters" element="tns:doGetCropList" />
+  </wsdl:message>
+  <wsdl:message name="IService1_doGetCropList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:doGetCropListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_doRemoveCrop_InputMessage">
+    <wsdl:part name="parameters" element="tns:doRemoveCrop" />
+  </wsdl:message>
+  <wsdl:message name="IService1_doRemoveCrop_OutputMessage">
+    <wsdl:part name="parameters" element="tns:doRemoveCropResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_doAddCrop_InputMessage">
+    <wsdl:part name="parameters" element="tns:doAddCrop" />
+  </wsdl:message>
+  <wsdl:message name="IService1_doAddCrop_OutputMessage">
+    <wsdl:part name="parameters" element="tns:doAddCropResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAllStates_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllStates" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAllStates_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllStatesResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="doLogin">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/doLogin" message="tns:IService1_doLogin_InputMessage" />
@@ -27,6 +57,26 @@
     <wsdl:operation name="doRegister">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/doRegister" message="tns:IService1_doRegister_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/doRegisterResponse" message="tns:IService1_doRegister_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="doGetCrop">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/doGetCrop" message="tns:IService1_doGetCrop_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/doGetCropResponse" message="tns:IService1_doGetCrop_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="doGetCropList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/doGetCropList" message="tns:IService1_doGetCropList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/doGetCropListResponse" message="tns:IService1_doGetCropList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="doRemoveCrop">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/doRemoveCrop" message="tns:IService1_doRemoveCrop_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/doRemoveCropResponse" message="tns:IService1_doRemoveCrop_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="doAddCrop">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/doAddCrop" message="tns:IService1_doAddCrop_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/doAddCropResponse" message="tns:IService1_doAddCrop_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllStates">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetAllStates" message="tns:IService1_GetAllStates_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetAllStatesResponse" message="tns:IService1_GetAllStates_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -42,6 +92,51 @@
     </wsdl:operation>
     <wsdl:operation name="doRegister">
       <soap:operation soapAction="http://tempuri.org/IService1/doRegister" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doGetCrop">
+      <soap:operation soapAction="http://tempuri.org/IService1/doGetCrop" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doGetCropList">
+      <soap:operation soapAction="http://tempuri.org/IService1/doGetCropList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doRemoveCrop">
+      <soap:operation soapAction="http://tempuri.org/IService1/doRemoveCrop" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doAddCrop">
+      <soap:operation soapAction="http://tempuri.org/IService1/doAddCrop" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllStates">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetAllStates" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

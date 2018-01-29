@@ -1,0 +1,131 @@
+﻿@model IEnumerable<BOM.watershed_village_data>
+
+@{
+    ViewBag.Title = "ViewDetail";
+}
+
+<script src="~/Scripts/VillagesListAjax.js"></script>
+<script>
+    $(document).ready(function () {
+        CheckState();
+    });
+
+   
+</script>
+
+<h2>ViewDetail</h2>
+
+<div class="watersheddiv container body-content">
+    <div class="form-group">
+        <form action="/WaterShed/FilterVillage" method="post" >
+
+            <div class="form-group">
+                <label class="control-label col-md-2" for="state">Select State:</label>
+                <div class="col-md-10">
+                    <select id="state" class="form-control" onchange="ListCity()"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="city">Select City:</label>
+                <div class="col-md-10">
+                    <select id="city" class="form-control" onchange="ListTaluka()"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="taluka">Select Taluka:</label>
+                <div class="col-md-10">
+                    <select id="taluka" name="taluka" class="form-control" onchange="ListVillages()"></select>
+                </div>
+            </div>
+            <input type="submit" value="Get Details"/>
+        </form>
+    </div>
+<table class="table">
+    <tr>
+        <th>
+            Sr
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.watershed_village.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.population)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.waterreq)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rainfall)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.wateravail)
+        </th>
+       
+        <th>
+            Water Sarcacity/Available
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cycle_year)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.livestock)
+        </th>
+        <th>
+           Number Of Families
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.vd_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.watershed_village.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.population) persons
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.waterreq) Litre
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rainfall) mm
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.wateravail) Litre
+        </td>
+        @if (item.waterreq>item.wateravail)
+        {
+        <td>
+         -   @Html.DisplayFor(modelItem => item.water_sarcacity) Litre
+        </td>
+        }
+        else
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.water_sarcacity) Litre
+            </td>
+        }
+        <td>
+            @Html.DisplayFor(modelItem => item.cycle_year)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.livestock)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.num_families)
+        </td>
+        <td>
+         
+            @Html.ActionLink("Details", "VillageDetails", new { Id=item.vd_id }) |
+     
+        </td>
+    </tr>
+}
+
+</table>
+    </div>

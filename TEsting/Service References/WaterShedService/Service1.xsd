@@ -12,4 +12,147 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="User" nillable="true" type="tns:User" />
+  <xs:complexType name="watershed_crop">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="crop_id" type="xs:int" />
+      <xs:element minOccurs="0" name="season" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="type" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="waterreq" type="xs:double" />
+      <xs:element minOccurs="0" name="watershed_policy" nillable="true" type="tns:ArrayOfwatershed_policy" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="watershed_crop" nillable="true" type="tns:watershed_crop" />
+  <xs:complexType name="ArrayOfwatershed_policy">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="watershed_policy" nillable="true" type="tns:watershed_policy" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfwatershed_policy" nillable="true" type="tns:ArrayOfwatershed_policy" />
+  <xs:complexType name="watershed_policy">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cd_id" type="xs:int" />
+      <xs:element minOccurs="0" name="crop_id" type="xs:int" />
+      <xs:element minOccurs="0" name="cultivated_area" type="xs:double" />
+      <xs:element minOccurs="0" name="pid" type="xs:int" />
+      <xs:element minOccurs="0" name="watershed_crop" nillable="true" type="tns:watershed_crop" />
+      <xs:element minOccurs="0" name="watershed_village_data" nillable="true" type="tns:watershed_village_data" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="watershed_policy" nillable="true" type="tns:watershed_policy" />
+  <xs:complexType name="watershed_village_data">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cycle_year" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="population" type="xs:int" />
+      <xs:element minOccurs="0" name="rainfall" type="xs:double" />
+      <xs:element minOccurs="0" name="village_id" type="xs:int" />
+      <xs:element minOccurs="0" name="water_sarcacity" type="xs:double" />
+      <xs:element minOccurs="0" name="wateravail" type="xs:double" />
+      <xs:element minOccurs="0" name="waterreq" type="xs:double" />
+      <xs:element minOccurs="0" name="watershed_policy" nillable="true" type="tns:ArrayOfwatershed_policy" />
+      <xs:element minOccurs="0" name="watershed_village" nillable="true" type="tns:watershed_village" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="watershed_village_data" nillable="true" type="tns:watershed_village_data" />
+  <xs:complexType name="watershed_village">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Area" type="xs:double" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Pincode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tid" type="xs:int" />
+      <xs:element minOccurs="0" name="vid" type="xs:int" />
+      <xs:element minOccurs="0" name="watershed_taluka" nillable="true" type="tns:watershed_taluka" />
+      <xs:element minOccurs="0" name="watershed_village_data" nillable="true" type="tns:watershed_village_data" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="watershed_village" nillable="true" type="tns:watershed_village" />
+  <xs:complexType name="watershed_taluka">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="area" type="xs:double" />
+      <xs:element minOccurs="0" name="cid" type="xs:int" />
+      <xs:element minOccurs="0" name="tid" type="xs:int" />
+      <xs:element minOccurs="0" name="watershed_city" nillable="true" type="tns:watershed_city" />
+      <xs:element minOccurs="0" name="watershed_taluka_data" nillable="true" type="tns:watershed_taluka_data" />
+      <xs:element minOccurs="0" name="watershed_village" nillable="true" type="tns:ArrayOfwatershed_village" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="watershed_taluka" nillable="true" type="tns:watershed_taluka" />
+  <xs:complexType name="watershed_city">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="area" type="xs:double" />
+      <xs:element minOccurs="0" name="cid" type="xs:int" />
+      <xs:element minOccurs="0" name="cname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sid" type="xs:int" />
+      <xs:element minOccurs="0" name="watershed_city_data" nillable="true" type="tns:ArrayOfwatershed_city_data" />
+      <xs:element minOccurs="0" name="watershed_state" nillable="true" type="tns:watershed_state" />
+      <xs:element minOccurs="0" name="watershed_taluka" nillable="true" type="tns:ArrayOfwatershed_taluka" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="watershed_city" nillable="true" type="tns:watershed_city" />
+  <xs:complexType name="ArrayOfwatershed_city_data">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="watershed_city_data" nillable="true" type="tns:watershed_city_data" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfwatershed_city_data" nillable="true" type="tns:ArrayOfwatershed_city_data" />
+  <xs:complexType name="watershed_city_data">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cd_id" type="xs:int" />
+      <xs:element minOccurs="0" name="cid" type="xs:int" />
+      <xs:element minOccurs="0" name="cycle_year" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="population" type="xs:int" />
+      <xs:element minOccurs="0" name="rainfall" type="xs:double" />
+      <xs:element minOccurs="0" name="water_sarcacity" type="xs:double" />
+      <xs:element minOccurs="0" name="wateravail" type="xs:double" />
+      <xs:element minOccurs="0" name="waterreq" type="xs:double" />
+      <xs:element minOccurs="0" name="watershed_city" nillable="true" type="tns:watershed_city" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="watershed_city_data" nillable="true" type="tns:watershed_city_data" />
+  <xs:complexType name="watershed_state">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:int" />
+      <xs:element minOccurs="0" name="sname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="watershed_city" nillable="true" type="tns:ArrayOfwatershed_city" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="watershed_state" nillable="true" type="tns:watershed_state" />
+  <xs:complexType name="ArrayOfwatershed_city">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="watershed_city" nillable="true" type="tns:watershed_city" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfwatershed_city" nillable="true" type="tns:ArrayOfwatershed_city" />
+  <xs:complexType name="ArrayOfwatershed_taluka">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="watershed_taluka" nillable="true" type="tns:watershed_taluka" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfwatershed_taluka" nillable="true" type="tns:ArrayOfwatershed_taluka" />
+  <xs:complexType name="watershed_taluka_data">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cycle_year" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="population" type="xs:int" />
+      <xs:element minOccurs="0" name="rainfall" type="xs:double" />
+      <xs:element minOccurs="0" name="tal_id" type="xs:int" />
+      <xs:element minOccurs="0" name="water_sarcacity" type="xs:double" />
+      <xs:element minOccurs="0" name="wateravail" type="xs:double" />
+      <xs:element minOccurs="0" name="waterreq" type="xs:double" />
+      <xs:element minOccurs="0" name="watershed_taluka" nillable="true" type="tns:watershed_taluka" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="watershed_taluka_data" nillable="true" type="tns:watershed_taluka_data" />
+  <xs:complexType name="ArrayOfwatershed_village">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="watershed_village" nillable="true" type="tns:watershed_village" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfwatershed_village" nillable="true" type="tns:ArrayOfwatershed_village" />
+  <xs:complexType name="ArrayOfwatershed_crop">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="watershed_crop" nillable="true" type="tns:watershed_crop" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfwatershed_crop" nillable="true" type="tns:ArrayOfwatershed_crop" />
 </xs:schema>

@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WaterShed;
 using BOM;
-
+using BOL;
 
 namespace WaterBudget.Controllers
 {
@@ -59,7 +59,7 @@ namespace WaterBudget.Controllers
 
 
             WaterShed.WaterShedservice.Service1Client auth = new WaterShed.WaterShedservice.Service1Client();
-            User users = auth.doLogin(user) as User;
+            User users = BOL.Authentication.Login(user) as User;
             if (null == users)
             {
                 this.Response.Redirect("Login");
@@ -78,9 +78,13 @@ namespace WaterBudget.Controllers
                     //this.Response.Redirect("/Home/Index");
                   return  this.RedirectToAction("AddDetail", "WaterShed");
                 }
+                if(us.role.Equals("StateAgent"))
+                {
+                    return this.RedirectToAction("AddVillageDetail", "WaterShed");
+                }
                 if(us.role.Equals("user"))
                 {
-                    return this.RedirectToAction("ViewDetail", "WaterShed");
+                    return this.RedirectToAction("SelectCrop", "WaterShed");
                 }
             }
 
@@ -107,5 +111,12 @@ namespace WaterBudget.Controllers
             this.Response.Redirect("Login");
             return View();
         }
+        [HttpGet]
+        public ActionResult SelectCrop()
+        {
+            return View();
+        }
+
+
     }
 }

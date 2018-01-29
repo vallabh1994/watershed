@@ -17,6 +17,7 @@ namespace BOM
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public watershed_taluka()
         {
+            this.watershed_taluka_data = new HashSet<watershed_taluka_data>();
             this.watershed_village = new HashSet<watershed_village>();
         }
     
@@ -26,7 +27,8 @@ namespace BOM
         public string Name { get; set; }
     
         public virtual watershed_city watershed_city { get; set; }
-        public virtual watershed_taluka_data watershed_taluka_data { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<watershed_taluka_data> watershed_taluka_data { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<watershed_village> watershed_village { get; set; }
     }

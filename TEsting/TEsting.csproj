@@ -77,6 +77,7 @@
     <None Include="json1.json" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\BOM.User.datasource" />
+    <None Include="Properties\DataSources\BOM.watershed_crop.datasource" />
     <None Include="Service References\WaterShedService\Service1.wsdl" />
     <None Include="Service References\WaterShedService\Service1.xsd">
       <SubType>Designer</SubType>
@@ -89,9 +90,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BOL\BOL.csproj">
+      <Project>{9f537045-fb17-424a-90e7-9d8c6a56b96f}</Project>
+      <Name>BOL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BOM\BOM.csproj">
       <Project>{b28e4078-8bb9-4b65-82de-b0b18021a5df}</Project>
       <Name>BOM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{ea3d726c-7c6a-4a49-a833-eb23176ae8e1}</Project>
+      <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "AddState";
+}
+
+<h2>AddState</h2>
+<script src="~/Scripts/VillagesListAjax.js" ></script>
+<script>
+    $(document).ready(function () {
+        CheckState();
+    });
+
+   
+
+</script>
+
+<form method="post" action="/Admin/AddState">
+    <input type="text" name="sname" id="sname" />
+    <input type="button" value="search" onclick="CheckState()"/>
+</form>
+
+
+<span id="formspan">
+
+
+</span>

@@ -14,6 +14,12 @@ namespace BOM
     
     public partial class watershed_village
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public watershed_village()
+        {
+            this.watershed_village_data = new HashSet<watershed_village_data>();
+        }
+    
         public int vid { get; set; }
         public int tid { get; set; }
         public double Area { get; set; }
@@ -21,6 +27,7 @@ namespace BOM
         public string Name { get; set; }
     
         public virtual watershed_taluka watershed_taluka { get; set; }
-        public virtual watershed_village_data watershed_village_data { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<watershed_village_data> watershed_village_data { get; set; }
     }
 }

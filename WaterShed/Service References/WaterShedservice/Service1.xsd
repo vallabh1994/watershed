@@ -9,7 +9,174 @@
       <xs:element minOccurs="0" name="pincode" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="role" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="uid" type="xs:int" />
+      <xs:element minOccurs="0" name="watershed_policy" nillable="true" type="tns:ArrayOfwatershed_policy" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="User" nillable="true" type="tns:User" />
+  <xs:complexType name="ArrayOfwatershed_policy">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="watershed_policy" nillable="true" type="tns:watershed_policy" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfwatershed_policy" nillable="true" type="tns:ArrayOfwatershed_policy" />
+  <xs:complexType name="watershed_policy">
+    <xs:sequence>
+      <xs:element name="_x003C_crop_id_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_cultivated_area_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_pid_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_uid_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_user_x003E_k__BackingField" nillable="true" type="tns:User" />
+      <xs:element name="_x003C_vd_id_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_watershed_crop_x003E_k__BackingField" nillable="true" type="tns:watershed_crop" />
+      <xs:element name="_x003C_watershed_village_data_x003E_k__BackingField" nillable="true" type="tns:watershed_village_data" />
+      <xs:element name="_x003C_year_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="watershed_policy" nillable="true" type="tns:watershed_policy" />
+  <xs:complexType name="watershed_crop">
+    <xs:sequence>
+      <xs:element name="_x003C_cname_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_crop_id_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_season_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_type_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_waterreq_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_watershed_policy_x003E_k__BackingField" nillable="true" type="tns:ArrayOfwatershed_policy" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="watershed_crop" nillable="true" type="tns:watershed_crop" />
+  <xs:complexType name="watershed_village_data">
+    <xs:sequence>
+      <xs:element name="_x003C_cycle_year_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_population_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_rainfall_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_vd_id_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_village_id_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_water_sarcacity_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_wateravail_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_waterreq_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_watershed_policy_x003E_k__BackingField" nillable="true" type="tns:ArrayOfwatershed_policy" />
+      <xs:element name="_x003C_watershed_village_x003E_k__BackingField" nillable="true" type="tns:watershed_village" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="watershed_village_data" nillable="true" type="tns:watershed_village_data" />
+  <xs:complexType name="watershed_village">
+    <xs:sequence>
+      <xs:element name="_x003C_Area_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_Name_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Pincode_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_tid_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_vid_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_watershed_taluka_x003E_k__BackingField" nillable="true" type="tns:watershed_taluka" />
+      <xs:element name="_x003C_watershed_village_data_x003E_k__BackingField" nillable="true" type="tns:ArrayOfwatershed_village_data" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="watershed_village" nillable="true" type="tns:watershed_village" />
+  <xs:complexType name="watershed_taluka">
+    <xs:sequence>
+      <xs:element name="_x003C_Name_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_area_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_cid_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_tid_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_watershed_city_x003E_k__BackingField" nillable="true" type="tns:watershed_city" />
+      <xs:element name="_x003C_watershed_taluka_data_x003E_k__BackingField" nillable="true" type="tns:ArrayOfwatershed_taluka_data" />
+      <xs:element name="_x003C_watershed_village_x003E_k__BackingField" nillable="true" type="tns:ArrayOfwatershed_village" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="watershed_taluka" nillable="true" type="tns:watershed_taluka" />
+  <xs:complexType name="watershed_city">
+    <xs:sequence>
+      <xs:element name="_x003C_area_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_cid_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_cname_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_sid_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_watershed_city_data_x003E_k__BackingField" nillable="true" type="tns:ArrayOfwatershed_city_data" />
+      <xs:element name="_x003C_watershed_state_x003E_k__BackingField" nillable="true" type="tns:watershed_state" />
+      <xs:element name="_x003C_watershed_taluka_x003E_k__BackingField" nillable="true" type="tns:ArrayOfwatershed_taluka" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="watershed_city" nillable="true" type="tns:watershed_city" />
+  <xs:complexType name="ArrayOfwatershed_city_data">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="watershed_city_data" nillable="true" type="tns:watershed_city_data" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfwatershed_city_data" nillable="true" type="tns:ArrayOfwatershed_city_data" />
+  <xs:complexType name="watershed_city_data">
+    <xs:sequence>
+      <xs:element name="_x003C_cd_id_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_cid_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_cycle_year_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_population_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_rainfall_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_water_sarcacity_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_wateravail_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_waterreq_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_watershed_city_x003E_k__BackingField" nillable="true" type="tns:watershed_city" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="watershed_city_data" nillable="true" type="tns:watershed_city_data" />
+  <xs:complexType name="watershed_state">
+    <xs:sequence>
+      <xs:element name="_x003C_sid_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_sname_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_watershed_city_x003E_k__BackingField" nillable="true" type="tns:ArrayOfwatershed_city" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="watershed_state" nillable="true" type="tns:watershed_state" />
+  <xs:complexType name="ArrayOfwatershed_city">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="watershed_city" nillable="true" type="tns:watershed_city" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfwatershed_city" nillable="true" type="tns:ArrayOfwatershed_city" />
+  <xs:complexType name="ArrayOfwatershed_taluka">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="watershed_taluka" nillable="true" type="tns:watershed_taluka" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfwatershed_taluka" nillable="true" type="tns:ArrayOfwatershed_taluka" />
+  <xs:complexType name="ArrayOfwatershed_taluka_data">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="watershed_taluka_data" nillable="true" type="tns:watershed_taluka_data" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfwatershed_taluka_data" nillable="true" type="tns:ArrayOfwatershed_taluka_data" />
+  <xs:complexType name="watershed_taluka_data">
+    <xs:sequence>
+      <xs:element name="_x003C_cycle_year_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_population_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_rainfall_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_tal_id_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_td_id_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_water_sarcacity_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_wateravail_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_waterreq_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_watershed_taluka_x003E_k__BackingField" nillable="true" type="tns:watershed_taluka" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="watershed_taluka_data" nillable="true" type="tns:watershed_taluka_data" />
+  <xs:complexType name="ArrayOfwatershed_village">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="watershed_village" nillable="true" type="tns:watershed_village" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfwatershed_village" nillable="true" type="tns:ArrayOfwatershed_village" />
+  <xs:complexType name="ArrayOfwatershed_village_data">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="watershed_village_data" nillable="true" type="tns:watershed_village_data" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfwatershed_village_data" nillable="true" type="tns:ArrayOfwatershed_village_data" />
+  <xs:complexType name="ArrayOfwatershed_crop">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="watershed_crop" nillable="true" type="tns:watershed_crop" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfwatershed_crop" nillable="true" type="tns:ArrayOfwatershed_crop" />
+  <xs:complexType name="ArrayOfwatershed_state">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="watershed_state" nillable="true" type="tns:watershed_state" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfwatershed_state" nillable="true" type="tns:ArrayOfwatershed_state" />
 </xs:schema>

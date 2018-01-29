@@ -38,6 +38,22 @@
   opaque=0.9;
 }
 
+.watersheddiv{
+    min-height:inherit;
+    min-width:50%;
+     box-sizing:border-box;
+ padding:10px;
+ font-family:helvetica;
+  background:black;
+    background:rgba(0,0,0,0.8);
+    color:white;
+
+  position:absolute;
+
+  opaque=0.9;
+
+}
+
 #loginform #close_login
 {
  position:absolute;
