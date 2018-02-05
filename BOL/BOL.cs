@@ -27,7 +27,7 @@ namespace BOL
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
                 client.UseDefaultCredentials = false;
                 client.Credentials = new System.Net.NetworkCredential("komal@abctnc.com", "komal@123");
-                MailMessage mm = new MailMessage("vallabh@abctnc.com", to, sub, msg);
+                MailMessage mm = new MailMessage("komal@abctnc.com", to, sub, msg);
                 mm.BodyEncoding = UTF8Encoding.UTF8;
                 client.Send(mm);
                 return "success";
