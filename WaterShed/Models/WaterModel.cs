@@ -19,8 +19,16 @@ namespace WaterShed.Models
             data.wateravail = (m2 * ((data.rainfall * 1000)-(evaporation*1000)));//in litres
 
             data.waterreq = GetWaterBudget(data).total;
+            if(data.wateravail>data.waterreq)
+            {
+                data.water_sarcacity = data.wateravail - data.waterreq;
+            }
+            else
+            {
+                data.water_sarcacity = data.waterreq - data.wateravail;
+            }
 
-            data.water_sarcacity = data.wateravail - data.waterreq;
+           
 
             return data;
         }

@@ -13,6 +13,11 @@ namespace WaterShedService
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class Service1 : IService1
     {
+        bool IService1.AddPolicy(watershed_policy policy)
+        {
+            return BOL.VillageBOL.AddPolicy(policy);
+        }
+
         bool IService1.doAddCrop(watershed_crop crop)
         {
             return BOL.Crop.AddCrop(crop);
@@ -41,6 +46,11 @@ namespace WaterShedService
         bool IService1.doRemoveCrop(watershed_crop crop)
         {
             return BOL.Crop.RemoveCrop(crop);
+        }
+
+        string IService1.ForgetPassword(User users)
+        {
+            return BOL.Authentication.ForgetPassword(users);
         }
 
         List<BOM.watershed_state> IService1.GetAllStates()

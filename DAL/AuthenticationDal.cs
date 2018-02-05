@@ -28,6 +28,7 @@ namespace DAL
         public static Boolean RegisterDal(User user)
         {
             watershedEntities db = new watershedEntities();
+            
             if (null==checkEmail(user))
             {
                 try {
@@ -41,6 +42,23 @@ namespace DAL
                 return true;
             }
             return false;
+        }
+
+        public static bool UpdatePassword(BOM.User user,String newpass)
+        {
+            watershedEntities db = new watershedEntities();
+            try
+            {
+              User us=  (from u in db.Users1 where u.email == user.email select u).SingleOrDefault();
+                us.password = newpass;
+                us.ConfirmPassword = newpass;
+                db.SaveChanges();
+                return true;
+            }catch(DbEntityValidationException ex)
+            {
+                return false;
+            }
+          
         }
 
     }

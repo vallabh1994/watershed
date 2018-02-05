@@ -27,6 +27,12 @@ namespace WaterShed.WaterShedservice {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/doRegister", ReplyAction="http://tempuri.org/IService1/doRegisterResponse")]
         System.Threading.Tasks.Task<bool> doRegisterAsync(BOM.User user);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ForgetPassword", ReplyAction="http://tempuri.org/IService1/ForgetPasswordResponse")]
+        string ForgetPassword(BOM.User users);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ForgetPassword", ReplyAction="http://tempuri.org/IService1/ForgetPasswordResponse")]
+        System.Threading.Tasks.Task<string> ForgetPasswordAsync(BOM.User users);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/doGetCrop", ReplyAction="http://tempuri.org/IService1/doGetCropResponse")]
         BOM.watershed_crop doGetCrop(BOM.watershed_crop crop);
         
@@ -56,6 +62,12 @@ namespace WaterShed.WaterShedservice {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetAllStates", ReplyAction="http://tempuri.org/IService1/GetAllStatesResponse")]
         System.Threading.Tasks.Task<BOM.watershed_state[]> GetAllStatesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddPolicy", ReplyAction="http://tempuri.org/IService1/AddPolicyResponse")]
+        bool AddPolicy(BOM.watershed_policy policy);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddPolicy", ReplyAction="http://tempuri.org/IService1/AddPolicyResponse")]
+        System.Threading.Tasks.Task<bool> AddPolicyAsync(BOM.watershed_policy policy);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -101,6 +113,14 @@ namespace WaterShed.WaterShedservice {
             return base.Channel.doRegisterAsync(user);
         }
         
+        public string ForgetPassword(BOM.User users) {
+            return base.Channel.ForgetPassword(users);
+        }
+        
+        public System.Threading.Tasks.Task<string> ForgetPasswordAsync(BOM.User users) {
+            return base.Channel.ForgetPasswordAsync(users);
+        }
+        
         public BOM.watershed_crop doGetCrop(BOM.watershed_crop crop) {
             return base.Channel.doGetCrop(crop);
         }
@@ -139,6 +159,14 @@ namespace WaterShed.WaterShedservice {
         
         public System.Threading.Tasks.Task<BOM.watershed_state[]> GetAllStatesAsync() {
             return base.Channel.GetAllStatesAsync();
+        }
+        
+        public bool AddPolicy(BOM.watershed_policy policy) {
+            return base.Channel.AddPolicy(policy);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddPolicyAsync(BOM.watershed_policy policy) {
+            return base.Channel.AddPolicyAsync(policy);
         }
     }
 }

@@ -1,6 +1,11 @@
 ﻿
 @{
     ViewBag.Title = "Index";
+    BOM.User user=  this.Session["user"] as BOM.User;
+    if(user.uid==0)
+    {
+        this.Response.Redirect("/Account/Login");  //session management code
+    }
 }
 
 <h2>Index</h2>

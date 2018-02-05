@@ -11,7 +11,8 @@ namespace BOM
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     public partial class watershed_village_data
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,16 +20,24 @@ namespace BOM
         {
             this.watershed_policy = new HashSet<watershed_policy>();
         }
-    
+        [Display(Name = "Village Id")]
         public int village_id { get; set; }
+        [Display(Name = "Population")]
         public int population { get; set; }
+        [Display(Name = "Water Required")]
         public double waterreq { get; set; }
+        [Display(Name = "RainFall")]
         public double rainfall { get; set; }
+        [Display(Name = "Water Available")]
         public double wateravail { get; set; }
+        [Display(Name = "Water Sarcacity")]
         public double water_sarcacity { get; set; }
+        [Display(Name = "Year")]
         public System.DateTime cycle_year { get; set; }
         public int vd_id { get; set; }
+        [Display(Name = "Livestock")][Required]
         public Nullable<int> livestock { get; set; }
+        [Display(Name = "Number of Families:")][Required]
         public int num_families { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

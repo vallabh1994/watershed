@@ -19,6 +19,12 @@
   <wsdl:message name="IService1_doRegister_OutputMessage">
     <wsdl:part name="parameters" element="tns:doRegisterResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_ForgetPassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:ForgetPassword" />
+  </wsdl:message>
+  <wsdl:message name="IService1_ForgetPassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ForgetPasswordResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_doGetCrop_InputMessage">
     <wsdl:part name="parameters" element="tns:doGetCrop" />
   </wsdl:message>
@@ -49,6 +55,12 @@
   <wsdl:message name="IService1_GetAllStates_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllStatesResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_AddPolicy_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddPolicy" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddPolicy_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddPolicyResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="doLogin">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/doLogin" message="tns:IService1_doLogin_InputMessage" />
@@ -57,6 +69,10 @@
     <wsdl:operation name="doRegister">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/doRegister" message="tns:IService1_doRegister_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/doRegisterResponse" message="tns:IService1_doRegister_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ForgetPassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/ForgetPassword" message="tns:IService1_ForgetPassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/ForgetPasswordResponse" message="tns:IService1_ForgetPassword_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="doGetCrop">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/doGetCrop" message="tns:IService1_doGetCrop_InputMessage" />
@@ -78,6 +94,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetAllStates" message="tns:IService1_GetAllStates_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetAllStatesResponse" message="tns:IService1_GetAllStates_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="AddPolicy">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddPolicy" message="tns:IService1_AddPolicy_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddPolicyResponse" message="tns:IService1_AddPolicy_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -92,6 +112,15 @@
     </wsdl:operation>
     <wsdl:operation name="doRegister">
       <soap:operation soapAction="http://tempuri.org/IService1/doRegister" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ForgetPassword">
+      <soap:operation soapAction="http://tempuri.org/IService1/ForgetPassword" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -137,6 +166,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllStates">
       <soap:operation soapAction="http://tempuri.org/IService1/GetAllStates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPolicy">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddPolicy" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

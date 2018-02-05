@@ -168,6 +168,7 @@
     <Content Include="Properties\DataSources\BOM.watershed_crop.datasource" />
     <Content Include="Properties\DataSources\BOM.watershed_state.datasource" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\classie.js" />
     <Content Include="Scripts\easing.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -230,7 +231,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\web.config" />
+    <Content Include="Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
@@ -255,6 +258,10 @@
     <Content Include="Views\WaterShed\VillageDetails.cshtml" />
     <Content Include="Views\WaterShed\FilterVillage.cshtml" />
     <Content Include="Views\Account\SelectCrop.cshtml" />
+    <Content Include="Views\WaterShed\ChartBar.cshtml" />
+    <Content Include="Views\Account\ForgetPassword.cshtml" />
+    <Content Include="Views\Account\CropCart.cshtml" />
+    <Content Include="Views\Account\UpdatePassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

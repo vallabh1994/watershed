@@ -24,5 +24,9 @@ namespace BOL
         {
             return DAL.VillageDataDal.getAllTalukas(cid);
         }
+        public static bool AddPolicy(BOM.watershed_policy policy)
+        {
+           return DAL.VillageDataDal.AddPolicy(policy);
+        }
     }
 }

@@ -5,7 +5,11 @@
 }
 @{ 
     List<BOM.watershed_policy> policy = ViewData["policy"] as List<BOM.watershed_policy>;
-
+    BOM.User user = this.Session["user"] as BOM.User;
+    if (user.uid == 0)
+    {
+        this.Response.Redirect("/Account/Login");  //session management code
+    }
 }
 <style>
     dd, dt {

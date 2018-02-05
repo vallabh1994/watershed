@@ -11,7 +11,8 @@ namespace BOM
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     public partial class watershed_crop
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,9 +22,13 @@ namespace BOM
         }
     
         public int crop_id { get; set; }
+        [Display(Name = "Crop Name")]
         public string cname { get; set; }
+        [Display(Name = "Type")]
         public string type { get; set; }
+        [Display(Name = "Season")]
         public string season { get; set; }
+        [Display(Name = "Water require")]
         public double waterreq { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

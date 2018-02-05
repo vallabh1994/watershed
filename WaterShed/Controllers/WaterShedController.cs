@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using WaterShed;
 using BOM;
+using System.Collections;
+
 namespace WaterBudget.Controllers
 {
     public class WaterShedController : Controller
@@ -22,27 +24,29 @@ namespace WaterBudget.Controllers
         {
             int tal = 0;
             watershedEntities db = new watershedEntities();
-            if(null!=this.TempData["tal"] )
+            if (null != this.TempData["tal"])
             {
                 tal = (int)this.TempData["tal"];
             }
-            List<watershed_village_data> list=db.watershed_village_data.ToList();
+            List<watershed_village_data> list = db.watershed_village_data.ToList();
             List<watershed_village_data> list1 = new List<watershed_village_data>();
-            if (tal!=0)
+            if (tal != 0)
             {
                 foreach (watershed_village_data wt in list)
                 {
-                    if(null!=wt.watershed_village)
-                    if(wt.watershed_village.tid==tal)
+                    if (null != wt.watershed_village)
                     {
+                        if (wt.watershed_village.tid == tal)
+                        {
                             list1.Add(wt);
+                        }
                     }
                 }
             }
             if (list1.Count > 0)
                 list = list1;
 
-                return View(list);
+            return View(list);
         }
         public ActionResult ViewPolicy()
         {
@@ -83,8 +87,8 @@ namespace WaterBudget.Controllers
         [HttpPost]
         public ActionResult AddVillageDetail(watershed_village_data data)
         {
-           
-            watershed_village_data village= WaterShed.Models.WaterModel.VillageData(data);
+
+            watershed_village_data village = WaterShed.Models.WaterModel.VillageData(data);
 
             if (DAL.VillageDataDal.AddVillageData(village) == true)
             {
@@ -113,10 +117,11 @@ namespace WaterBudget.Controllers
         [HttpPost]
         public ActionResult AddCity(watershed_city data)
         {
-           if( DAL.VillageDataDal.AddCity(data)==true)
+            if (DAL.VillageDataDal.AddCity(data) == true)
             {
-                ViewData.Add("AddCity","success");
-            }else
+                ViewData.Add("AddCity", "success");
+            }
+            else
             {
                 ViewData.Add("AddCity", "fail");
             }
@@ -155,17 +160,27 @@ namespace WaterBudget.Controllers
         public ActionResult AddCrop(BOM.watershed_crop crop)
         {
             WaterShed.WaterShedservice.Service1Client service = new WaterShed.WaterShedservice.Service1Client();
-            bool status=service.doAddCrop(crop);
+            bool status = service.doAddCrop(crop);
             String msg = "";
             if (status)
             {
-              msg= "add";
+                msg = "add";
             }
             else
             {
-               msg= "not";
+                msg = "not";
             }
-            TempData.Add("msg",msg);
+            TempData.Add("msg", msg);
+            return View();
+        }
+        [HttpGet]
+        public ActionResult AddCrop()
+        {
+            BOM.User user = this.Session["user"] as BOM.User;
+            if (!user.role.Equals("admin"))
+            {
+                this.Response.Redirect("/Account/Login");  //session management code
+            }
             return View();
         }
 
@@ -176,28 +191,57 @@ namespace WaterBudget.Controllers
             List<BOM.watershed_policy> policy = DAL.VillageDataDal.GetPolicyYear(d);
             ViewData.Add("policy", policy);
             List<watershed_crop> list = DAL.CropDal.GetListCrop();
-            
-            if (null != policy && null!=list)
+
+            if (null != policy && null != list)
             {
-                foreach(watershed_policy pol in policy)
-                foreach(watershed_crop crop in list)
-                {
-                    if (pol.crop_id == crop.crop_id)
-                        pol.watershed_crop = crop;
-                    
-                }
+                foreach (watershed_policy pol in policy)
+                    foreach (watershed_crop crop in list)
+                    {
+                        if (pol.crop_id == crop.crop_id)
+                            pol.watershed_crop = crop;
+
+                    }
             }
-          
+
             return View(d);
         }
-   
+
         [HttpPost]
         public ActionResult FilterVillage()
         {
-        
-           int tal= Convert.ToInt32(this.Request.Form["taluka"].ToString());
+
+            int tal = Convert.ToInt32(this.Request.Form["taluka"].ToString());
             TempData.Add("tal", tal);
             return RedirectToAction("ViewDetail");
+        }
+        public ActionResult ChartBar()
+        {
+
+
+
+            ArrayList xValue = new ArrayList();
+
+            ArrayList yValue = new ArrayList();
+            
+            List<BOM.watershed_village_data> results = this.Session["chart"] as List<BOM.watershed_village_data>;
+
+
+
+            results.ForEach(rs => xValue.Add(rs.cycle_year.Year));
+
+            results.ForEach(rs => yValue.Add(rs.water_sarcacity));
+
+            new System.Web.Helpers.Chart(width: 600, height: 400, theme: System.Web.Helpers.ChartTheme.Green)
+
+    /// SeriesChartType.Bubble
+    .AddTitle("Chart for Growth [Water-Sarcacity]")
+                    .AddLegend("Summary x-Year to Water Ratio")
+                    .AddSeries("Default", chartType: "Bubble", xValue: xValue, yValues: yValue)
+                    .Write("bmp");
+
+
+            return null;
+
         }
 
 

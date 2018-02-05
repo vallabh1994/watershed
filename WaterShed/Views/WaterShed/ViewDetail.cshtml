@@ -2,6 +2,12 @@
 
 @{
     ViewBag.Title = "ViewDetail";
+    BOM.User user = this.Session["user"] as BOM.User;
+    if (user.uid==0)
+    {
+        this.Response.Redirect("/Account/Login");  //session management code
+    }
+    this.Session.Add("chart",Model);
 }
 
 <script src="~/Scripts/VillagesListAjax.js"></script>
@@ -99,18 +105,20 @@
         </td>
         @if (item.waterreq>item.wateravail)
         {
+           
         <td>
-         -   @Html.DisplayFor(modelItem => item.water_sarcacity) Litre
+         -  @(item.waterreq-item.wateravail)  Litre
         </td>
         }
         else
         {
+            item.water_sarcacity =  item.wateravail- item.waterreq;
             <td>
                 @Html.DisplayFor(modelItem => item.water_sarcacity) Litre
             </td>
         }
         <td>
-            @Html.DisplayFor(modelItem => item.cycle_year)
+            @Html.DisplayFor(modelItem => item.cycle_year.Year)
         </td>
        
         <td>
@@ -128,4 +136,5 @@
 }
 
 </table>
+    <a href="~/WaterShed/ChartBar"> Chart representation</a>
     </div>

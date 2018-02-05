@@ -402,6 +402,32 @@ namespace DAL
             }
         }
 
+        public static List<watershed_policy> GetPolicyListByUid(int uid)
+        {
+            watershedEntities db = new watershedEntities();
+
+            try
+            {
+
+                return (from u in db.watershed_policy where u.uid == uid select u).ToList();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                return null;
+            }
+        }
+
+        public static bool AddPolicy(watershed_policy policy)
+        {
+            watershedEntities db = new watershedEntities();
+           watershed_policy p= db.watershed_policy.Add(policy);
+            db.SaveChanges();
+            if (null != p)
+            {
+                return true;
+            }
+            return false;
+        }
 
     }
 }

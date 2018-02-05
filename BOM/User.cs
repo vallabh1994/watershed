@@ -20,19 +20,25 @@ namespace BOM
         {
             this.watershed_policy = new HashSet<watershed_policy>();
         }
-
+        [Display(Name="User Id.")]
         public int uid { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Username Not entered")]
+        [Display(Name = "User Name.")]
         public string Name { get; set; }
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = "Email address Not entered")]
+        [EmailAddress(ErrorMessage = "Invalid Mail Id")]
+        [Display(Name = "User Email.")]
         public string email { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Password Not entered")]
+        [Display(Name = "User Password.")]
+        [DataType(DataType.Password)]
         public string password { get; set; }
         [Compare("password")]
         [Required]
+        [Display(Name = "Confirm Password.")]
         public string ConfirmPassword { get; set; }
         [Required]
+       
         public string pincode { get; set; }
         [Required]
         public string role { get; set; }

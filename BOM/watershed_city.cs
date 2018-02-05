@@ -11,7 +11,8 @@ namespace BOM
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     public partial class watershed_city
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,10 +21,14 @@ namespace BOM
             this.watershed_city_data = new HashSet<watershed_city_data>();
             this.watershed_taluka = new HashSet<watershed_taluka>();
         }
-    
+        [Display(Name ="Crop Id")]
         public int cid { get; set; }
+        [Required]
+        [Display(Name = "Crop Name")]
         public string cname { get; set; }
+        [Display(Name = "State Id")]
         public int sid { get; set; }
+        [Display(Name = "Area")][Required]
         public double area { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

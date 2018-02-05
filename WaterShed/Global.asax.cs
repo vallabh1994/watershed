@@ -18,7 +18,7 @@ namespace WaterShed
         protected void Session_Start()
         {
 
-            this.Session.Add("user", new BOM.User { uid = 0 });
+            this.Session.Add("user", new BOM.User { uid = 0,role="visitor" });
         }
     }
 }

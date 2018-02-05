@@ -11,7 +11,8 @@ namespace BOM
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     public partial class watershed_taluka
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,10 +21,13 @@ namespace BOM
             this.watershed_taluka_data = new HashSet<watershed_taluka_data>();
             this.watershed_village = new HashSet<watershed_village>();
         }
-    
+        [Display(Name = "Taluka Id.")]
         public int tid { get; set; }
+        [Display(Name = "City Id")]
         public int cid { get; set; }
+        [Display(Name = "Area")]
         public double area { get; set; }
+        [Display(Name = "Tehshil Name")]
         public string Name { get; set; }
     
         public virtual watershed_city watershed_city { get; set; }

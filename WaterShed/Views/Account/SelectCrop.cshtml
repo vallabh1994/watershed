@@ -2,6 +2,11 @@
 
 @{
     ViewBag.Title = "SelectCrop";
+    BOM.User user = this.Session["user"] as BOM.User;
+    if (user.uid == 0)
+    {
+        this.Response.Redirect("/Account/Login");  //session management code
+    }
 }
 <script src="~/Scripts/VillagesListAjax.js"></script>
 <script>
@@ -34,7 +39,7 @@
         var village_id = $("#village").val();
         var vd_id = $("#vd_id").val();
         var cultivated_area = $("#cultivated_area").val();
-        alert(cultivated_area);
+   
         var watershed_policy = { vd_id: vd_id,  cultivated_area: cultivated_area };
         $.ajax({
             type: 'post',
@@ -149,7 +154,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.cultivated_area, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                   <input type="text" name="cultivated_area" id="cultivated_area" onkeypress="SuggestCropArea()" />
+                   <input type="text" name="cultivated_area" id="cultivated_area" onkeypress="SuggestCropArea()" /> Sq Km.
                     @Html.ValidationMessageFor(model => model.cultivated_area, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -161,9 +166,7 @@
                     @Html.ValidationMessageFor(model => model.year, "", new { @class = "text-danger" })
                 </div>
             </div>
-            @{      
-                    BOM.User user = (BOM.User)this.Session["user"];
-            }
+          
             <input type="hidden" name="uid" id="uid" value="@user.uid" />
 
             <div class="form-group">
@@ -177,3 +180,17 @@
     <span id="myspan"></span>
 </div>
 
+@{
+    String script = ViewData["SelectCrop"] as String;
+    if (null != script)
+    {
+        if (script.Equals("success"))
+        {
+            <script>alert('Crop added successfully'); $('#myspan').html('Crop added successfully'); </script>
+        }
+        else if (script.Equals("fail"))
+        {
+            <script>alert('failed to add Crop'); $('#myspan').html('Failed to add Crop'); </script>
+        }
+    }
+}

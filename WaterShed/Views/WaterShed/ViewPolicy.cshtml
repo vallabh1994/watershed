@@ -2,6 +2,11 @@
 
 @{
     ViewBag.Title = "ViewPolicy";
+    BOM.User user = this.Session["user"] as BOM.User;
+    if (user.uid == 0)
+    {
+        this.Response.Redirect("/Account/Login");  //session management code
+    }
 }
 
 <h2>ViewPolicy</h2>

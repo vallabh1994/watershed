@@ -19,6 +19,8 @@ namespace WaterShedService
         [OperationContract]
         Boolean doRegister(BOM.User user);
 
+        [OperationContract]
+        String ForgetPassword(BOM.User users);
 
         [OperationContract]
         BOM.watershed_crop doGetCrop(BOM.watershed_crop crop);
@@ -35,6 +37,9 @@ namespace WaterShedService
       
         [OperationContract]
         List<BOM.watershed_state> GetAllStates();
+
+        [OperationContract]
+        bool AddPolicy(BOM.watershed_policy policy);
     }
 
 

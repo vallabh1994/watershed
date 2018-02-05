@@ -2,6 +2,11 @@
 
 @{
     ViewBag.Title = "AddTaluka";
+    BOM.User user = this.Session["user"] as BOM.User;
+    if (!user.role.Equals("admin"))
+    {
+        this.Response.Redirect("/Account/Login");  //session management code
+    }
 }
 <script src="~/Scripts/VillagesListAjax.js"></script>
 <script>

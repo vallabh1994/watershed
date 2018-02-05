@@ -1,9 +1,12 @@
-﻿
+﻿<script src="~/Scripts/angular.min.js"></script>
 @{
     ViewBag.Title = "Login";
 }
 @model BOM.User
     <script src="~/Scripts/validation.js"></script>
+<script>
+    var myapp = angular.module("myapp", []);
+</script>
 <script>
     function CheckLogin()
     {
@@ -11,12 +14,14 @@
         var upass = $("#password").val();
         if (ValidateEmail(uname) == false)
         {
-           // alert('Mail id is not in correct format');
+        
+            $("span1").html("<span style='color:red'>Username is not valid</span>");
             return;
         }
         if (upass == "")
         {
-            alert('password is blank');
+         
+            $("span2").html("<span style='color:red'>password is not valid</span>");
             return;
         }
         document.getElementById("dologinform").submit();
@@ -24,6 +29,7 @@
 
 </script>
 <h2>Login</h2>
+
 <div class="watersheddiv container body-content">
     <div class="container">
         <form class="form-group" id="dologinform" action="/Account/Login" method="post">
@@ -33,20 +39,21 @@
                 <tr>
                     <td> @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })</td>
                     <td> @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })</td>
-                    <td>@Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })</td>
+                    <td id="span1">@Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })</td>
                 </tr>
                 <tr>
                     <td>@Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })</td>
                     <td>@Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })</td>
-                    <td>@Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })</td>
+                    <td id="span2">@Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })</td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="button" value="Login" class="btn-primary" onclick="CheckLogin()" /></td>
+                    <td><input type="button" value="Login" class="btn btn-primary" onclick="CheckLogin()" /></td>
                     <td></td>
                 </tr>
             </table>
         </form>
+        <a href="/Account/ForgetPassword">Forget Password</a> ||
         <a href="/Account/Register">Not registered? Click Here to Register</a>
     </div>
-    </div>
+</div>

@@ -11,14 +11,21 @@ namespace BOM
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel;
     public partial class watershed_policy
     {
+        [Display(Name = "Id.")]
         public int pid { get; set; }
+        [Display(Name = "Village.")]
         public int vd_id { get; set; }
+        [Display(Name = "Crop Id")]
         public int crop_id { get; set; }
+        [Display(Name = "Cultivated Area")][Required]
         public double cultivated_area { get; set; }
+        [Display(Name = "Year")][Required]
         public string year { get; set; }
+        [Display(Name = "Username")]
         public int uid { get; set; }
     
         public virtual User user { get; set; }
