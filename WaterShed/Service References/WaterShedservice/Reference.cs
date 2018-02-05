@@ -33,6 +33,12 @@ namespace WaterShed.WaterShedservice {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ForgetPassword", ReplyAction="http://tempuri.org/IService1/ForgetPasswordResponse")]
         System.Threading.Tasks.Task<string> ForgetPasswordAsync(BOM.User users);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ChangePassword", ReplyAction="http://tempuri.org/IService1/ChangePasswordResponse")]
+        bool ChangePassword(BOM.User user, string pass);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ChangePassword", ReplyAction="http://tempuri.org/IService1/ChangePasswordResponse")]
+        System.Threading.Tasks.Task<bool> ChangePasswordAsync(BOM.User user, string pass);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/doGetCrop", ReplyAction="http://tempuri.org/IService1/doGetCropResponse")]
         BOM.watershed_crop doGetCrop(BOM.watershed_crop crop);
         
@@ -119,6 +125,14 @@ namespace WaterShed.WaterShedservice {
         
         public System.Threading.Tasks.Task<string> ForgetPasswordAsync(BOM.User users) {
             return base.Channel.ForgetPasswordAsync(users);
+        }
+        
+        public bool ChangePassword(BOM.User user, string pass) {
+            return base.Channel.ChangePassword(user, pass);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ChangePasswordAsync(BOM.User user, string pass) {
+            return base.Channel.ChangePasswordAsync(user, pass);
         }
         
         public BOM.watershed_crop doGetCrop(BOM.watershed_crop crop) {

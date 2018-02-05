@@ -41,7 +41,7 @@ namespace BOL
             String encrypted = Encrypted.GetEncrypted(pass);
             if (DAL.AuthenticationDal.UpdatePassword(user, encrypted))
             {
-                String res = BOL.SendMail(user.email, "password for watershed is updated", "password is" + pass);
+                String res = BOL.SendMail(user.email, "password for watershed is updated", "password is: " + pass);
                 return true;
             }
 
