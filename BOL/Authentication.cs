@@ -30,8 +30,8 @@ namespace BOL
                 return "fail";
                
                 String newpass = BOL.RandomNum();
-                String encrypted = Encrypted.GetEncrypted(newpass);
-                if(ChangePassword(users,encrypted))
+               
+                if(ChangePassword(users,newpass))
                    return "success";
                 
                 return "fail";
