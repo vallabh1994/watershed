@@ -4,7 +4,7 @@ Watershed is project for waterbudgeting and providing water policies and suggest
 
 WatershedService is WCF service on soap protocol for interoperability
 
-watershed is mvc based website which consumes wcf service
+watershed is mvc based website which consumes wcf service.
 
 for Reusability we used class library .. In BOL we written business logic and DAL we written data connectivity logic
 And BOM is our business Object Model which contain poco classes.
@@ -20,3 +20,6 @@ watersheddb.sql file is for database
 
 
 for security we used ssl also password are stored in encrypted form.
+
+
+we performed manual unit testing using console project named testing.
