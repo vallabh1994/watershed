@@ -23,3 +23,6 @@ for security we used ssl also password are stored in encrypted form.
 
 
 we performed manual unit testing using console project named testing.
+
+
+Also provide functionality like sending mail for update password or forget password using smtpclient 
