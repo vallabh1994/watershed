@@ -18,6 +18,11 @@ namespace WaterShedService
             return BOL.VillageBOL.AddPolicy(policy);
         }
 
+        bool IService1.ChangePassword(User user, string pass)
+        {
+            return BOL.Authentication.ChangePassword(user,pass);
+        }
+
         bool IService1.doAddCrop(watershed_crop crop)
         {
             return BOL.Crop.AddCrop(crop);

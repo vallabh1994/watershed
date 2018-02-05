@@ -31,13 +31,23 @@ namespace BOL
                
                 String newpass = BOL.RandomNum();
                 String encrypted = Encrypted.GetEncrypted(newpass);
-                if(DAL.AuthenticationDal.UpdatePassword(users,encrypted))
-                {
-                 String res= BOL.SendMail(users.email, "password for watershed", "password is " + newpass);
-                    return res;
-                }
+                if(ChangePassword(users,encrypted))
+                   return "success";
+                
                 return "fail";
         }
+        public static bool ChangePassword(BOM.User user,String pass)
+        {
+            String encrypted = Encrypted.GetEncrypted(pass);
+            if (DAL.AuthenticationDal.UpdatePassword(user, encrypted))
+            {
+                String res = BOL.SendMail(user.email, "password for watershed is updated", "password is" + pass);
+                return true;
+            }
+
+            return false;
+        } 
+
     }
 
 }

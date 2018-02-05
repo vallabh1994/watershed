@@ -183,8 +183,7 @@ namespace WaterBudget.Controllers
             if (u.password.Equals(epass))
             {
                 String newpass = this.Request.Form["npassword"].ToString();
-                String encrypted=BOL.Encrypted.GetEncrypted(newpass);
-                if (DAL.AuthenticationDal.UpdatePassword(u,encrypted))
+                if (BOL.Authentication.ChangePassword(u,newpass))
                     smsg = "success";
             }
             this.ViewData.Add("updatepass",smsg);

@@ -23,6 +23,9 @@ namespace WaterShedService
         String ForgetPassword(BOM.User users);
 
         [OperationContract]
+        bool ChangePassword(BOM.User user, String pass);
+
+        [OperationContract]
         BOM.watershed_crop doGetCrop(BOM.watershed_crop crop);
 
         [OperationContract]
